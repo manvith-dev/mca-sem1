@@ -1,0 +1,20 @@
+Manual Code Review
+
+Issues found by Navigator:
+1. One divide by zero error.
+2. Overly broad repsonsibilities in takeVehicleInput()
+3. appendVehicle() parameters can be reduced to 1 parameter
+4. 5 variables inside function takeVehicleInput() can be reduced to a single variable
+
+
+Description:
+1. One divide by zero error: If a user inputs number of vehicles as 0 then size of vehicles list is 0 which is further used as denominator in further calculations.
+2. Overly broad repsonsibilities in takeVehicleInput(): The functions core task should be taking input not validating the inputs (make a different function for that)
+3. appendVehicle() parameters can be reduced to 1 parameter: The parameters belong to a single type 'Vehicle' use that.
+4. 5 variables inside function takeVehicleInput() can be reduced to a single variable: Same as point 3 above.
+
+Actions taken:
+1. One divide by zero error: handled 0 size() case.
+2. Overly broad repsonsibilities in takeVehicleInput(): made multiple small helper functions to validate multipe inputs
+3. appendVehicle() parameters can be reduced to 1 parameter: used struct Vehicle as type in function parameter 
+4. 5 variables inside function takeVehicleInput() can be reduced to a single variable: used struct Vehicle as a type inside function

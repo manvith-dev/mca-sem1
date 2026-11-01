@@ -1,0 +1,7 @@
+[
+  {
+    "directory": "C:/Programming/college/mca/se_lab/lab_2",
+    "command": "g++ -std=c++17 -Wall -Wextra -c main.cpp",
+    "file": "C:/Programming/college/mca/se_lab/lab_2/main.cpp"
+  }
+]

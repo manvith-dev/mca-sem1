@@ -1,0 +1,19 @@
+DRIVER ~2hrs
+
+- Coded the first version of Campus Parking / Vehicle log system
+
+Created functions:
+appendVehicle()
+takeVehicleInput()
+displayVehicleLog()
+totalVehicleLog()
+getTotalParkingRevenue()
+displayParkingInsights()
+
+
+NAVIGATOR ~ 10 mins
+
+- Finding mistakes in the code and checking for improvements
+Findings:
+One divide by zero error.
+Overly broad repsonsibilities in takeVehicleInput()

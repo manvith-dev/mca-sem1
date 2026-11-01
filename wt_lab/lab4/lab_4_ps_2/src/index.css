@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --bg1: oklch(14.5% 0 none);
+  --bg2: oklch(20.5% 0 none);
+  --bg3: oklch(26.9% 0 none);
+  --accent: oklch(66.6% 0.179 58.318);
+  --text-muted: oklch(55.6% 0 none);
+  --text-primary: oklch(98.5% 0 none);
+  background-color: var(--bg1);
+  color: oklch(98.5% 0 none);
+  font-family: 'Century Gothic', sans-serif;
+
+}
+
+.bg1 {
+  background-color: var(--bg1);
+}
+
+.bg2 {
+  background-color: var(--bg3);
+}
+
+.bg3 {
+  background-color: var(--bg3);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.text-primary {
+  color: oklch(98.5% 0 none);
+}
+
+.text-muted {
+  color: oklch(55.6% 0 none);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-4 {
+  gap: 4rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-1 {
+  gap: 0.5rem;
+}
+
+.m-2 {
+  margin: 2rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.p-1 {
+  padding: 0.75rem;
+}
+
+.border-b {
+  border-bottom: 1px solid var(--bg3);
+}
+
+.border {
+  border: 1px solid var(--bg3);
+}
+
+.border-none {
+  border: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.rounded-md {
+  border-radius: 0.25rem;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: 1px solid var(--text-primary);
+
+}
+
+button:hover {
+  background-color: transparent;
+  color: var(--text-primary);
+}
+
+.menuItem:hover {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+ul {
+  text-decoration: none;
+  list-style: none;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  width: 20rem;
+}

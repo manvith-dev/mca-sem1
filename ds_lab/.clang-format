@@ -1,0 +1,5 @@
+BasedOnStyle: LLVM
+BreakBeforeBraces: Attach
+AllowShortLoopsOnASingleLine: true
+IndentWidth: 4
+TabWidth: 4

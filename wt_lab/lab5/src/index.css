@@ -1,0 +1,151 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --bg1: oklch(14.5% 0 none);
+  --bg2: oklch(20.5% 0 none);
+  --bg3: oklch(26.9% 0 none);
+  --accent: oklch(66.6% 0.179 58.318);
+  --text-muted: oklch(55.6% 0 none);
+  --text-primary: oklch(98.5% 0 none);
+  background-color: var(--bg1);
+  color: oklch(98.5% 0 none);
+  font-family: 'Century Gothic', sans-serif;
+}
+
+.bg1 {
+  background-color: var(--bg1);
+}
+
+.bg2 {
+  background-color: var(--bg3);
+}
+
+.bg3 {
+  background-color: var(--bg3);
+}
+
+.text-primary {
+  color: oklch(98.5% 0 none);
+}
+
+.text-muted {
+  color: oklch(55.6% 0 none);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-4 {
+  gap: 4rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.m-2 {
+  margin: 2rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.p-1 {
+  padding: 0.5rem;
+}
+
+.border-b {
+  border-bottom: 1px solid var(--bg3);
+}
+
+.border {
+  border: 1px solid var(--text-muted);
+}
+
+.rounded-md {
+  border-radius: 0.5rem;
+}
+
+.menuItem:hover {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.w-1-2 {
+  width: 50%;
+}
+
+ul {
+  text-decoration: none;
+  list-style: none;
+}
+
+button {
+  padding: 0.25rem;
+  background-color: var(--bg3);
+  color: var(--text-muted);
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button:hover {
+  padding: 0.25rem;
+  background-color: var(--text-muted);
+  color: var(--text-primary);
+  border: none;
+}
+
+input {
+  padding: 0.5rem 0.25rem;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  border: 1px solid var(--text-muted);
+  color: var(--text-primary);
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.btn-primary {
+  background-color: oklch(76.8% 0.233 130.85);
+  color: var(--text-primary);
+  padding: 0.5rem 1.25rem;
+}
+
+.btn-primary:hover {
+  background-color: oklch(64.8% 0.2 131.684);
+  color: var(--text-primary);
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+}

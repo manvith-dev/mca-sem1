@@ -1,0 +1,3 @@
+B7. Refactoring
+
+After running all the test cases from B3 the test results are unchanged.
