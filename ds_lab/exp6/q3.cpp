@@ -15,10 +15,11 @@ class Queue {
             return;
         }
         if (frontIdx == -1) {
-            frontIdx++;
+            frontIdx = 0;
+            rearIdx = 0;
         }
-        rearIdx++;
-        queue[rearIdx % total_size] = value;
+        rearIdx = (rearIdx + 1) % total_size;
+        queue[rearIdx] = value;
         std::cout << "The element was " << value << " enqueued.";
         dq_size++;
         return;
@@ -29,13 +30,12 @@ class Queue {
             return;
         }
         if (frontIdx == -1) {
-            frontIdx++;
-        } else if (frontIdx == 0) {
-            frontIdx = total_size - 1;
+            frontIdx = 0;
+            rearIdx = 0;
         } else {
-            frontIdx--;
+            frontIdx = (total_size + frontIdx - 1) % total_size;
         }
-        queue[frontIdx % total_size] = value;
+        queue[frontIdx] = value;
         std::cout << "The element was " << value << " enqueued.";
         dq_size++;
         return;
@@ -46,8 +46,8 @@ class Queue {
             std::cout << "Underflow Condition";
             return;
         }
-        std::cout << "The element was " << queue[frontIdx++ % total_size]
-                  << " removed.";
+        std::cout << "The element was " << queue[frontIdx] << " removed.";
+        frontIdx = (frontIdx + 1) % total_size;
         dq_size--;
         if (isEmpty()) {
             frontIdx = -1;
@@ -63,12 +63,7 @@ class Queue {
         }
         std::cout << "The element was " << queue[rearIdx % total_size]
                   << " removed.";
-
-        if (rearIdx == 0) {
-            rearIdx = total_size - 1;
-        } else {
-            rearIdx--;
-        }
+        rearIdx = (total_size + rearIdx - 1) % total_size;
 
         dq_size--;
         if (isEmpty()) {

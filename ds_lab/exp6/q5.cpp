@@ -79,11 +79,10 @@ class PriorityQueue {
 
         Node *cur = head;
         while (cur != nullptr) {
-            std::cout << "( " << cur->value << " , " << cur->priority
-                      << " ) -> ";
+            std::cout << "[" << cur->value << " , " << cur->priority << " ] ";
             cur = cur->next;
         }
-        std::cout << "nullptr\n";
+        std::cout << "\n";
     }
 };
 

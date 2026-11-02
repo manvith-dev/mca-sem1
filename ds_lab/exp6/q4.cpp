@@ -90,10 +90,11 @@ class Queue {
 
 int main() {
     Queue q;
+    q.showMenu();
     int choice, value;
 
     do {
-        std::cout << "Enter your choice: ";
+        std::cout << "\nEnter your choice: ";
         std::cin >> choice;
 
         switch (choice) {

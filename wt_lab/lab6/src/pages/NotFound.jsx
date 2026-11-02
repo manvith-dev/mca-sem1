@@ -1,9 +1,4 @@
-/*
- * Tool Used: ChatGPT
- * Purpose: Generate checkout page
- * Prompts Used: "Give me a simple order confirmed page which accepts the data as function args and renders the page accordingly, I want it on a separate page what is the procedure"
- * Personal Verification & Edits: The code follows standard react practices.
- */ import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
   const navigate = useNavigate();
