@@ -1,0 +1,229 @@
+{
+  "students": [
+    {
+      "id": "S001",
+      "name": "Aarav Sharma",
+      "class": "SYMCA-A",
+      "attendance": 92,
+      "marks": { "Java": 88, "DBMS": 91, "WT": 85, "DSA": 82 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S002",
+      "name": "Riya Patel",
+      "class": "SYMCA-A",
+      "attendance": 78,
+      "marks": { "Java": 72, "DBMS": 80, "WT": 75, "DSA": 68 },
+      "assignments": { "completed": 8, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S003",
+      "name": "Kabir Mehta",
+      "class": "SYMCA-B",
+      "attendance": 68,
+      "marks": { "Java": 35, "DBMS": 42, "WT": 38, "DSA": 45 },
+      "assignments": { "completed": 5, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S004",
+      "name": "Ananya Desai",
+      "class": "SYMCA-A",
+      "attendance": 96,
+      "marks": { "Java": 95, "DBMS": 89, "WT": 93, "DSA": 91 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S005",
+      "name": "Ishaan Rao",
+      "class": "SYMCA-B",
+      "attendance": 73,
+      "marks": { "Java": 65, "DBMS": 72, "WT": 68, "DSA": 70 },
+      "assignments": { "completed": 7, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S006",
+      "name": "Meera Shah",
+      "class": "SYMCA-A",
+      "attendance": 88,
+      "marks": { "Java": 82, "DBMS": 86, "WT": 90, "DSA": 84 },
+      "assignments": { "completed": 9, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S007",
+      "name": "Vihaan Joshi",
+      "class": "SYMCA-B",
+      "attendance": 81,
+      "marks": { "Java": 55, "DBMS": 48, "WT": 52, "DSA": 45 },
+      "assignments": { "completed": 6, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S008",
+      "name": "Sara Khan",
+      "class": "SYMCA-A",
+      "attendance": 94,
+      "marks": { "Java": 91, "DBMS": 94, "WT": 89, "DSA": 96 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S009",
+      "name": "Reyansh Kulkarni",
+      "class": "SYMCA-B",
+      "attendance": 62,
+      "marks": { "Java": 28, "DBMS": 35, "WT": 32, "DSA": 38 },
+      "assignments": { "completed": 3, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S010",
+      "name": "Aditi Nair",
+      "class": "SYMCA-A",
+      "attendance": 85,
+      "marks": { "Java": 78, "DBMS": 82, "WT": 80, "DSA": 76 },
+      "assignments": { "completed": 9, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S011",
+      "name": "Arjun Malhotra",
+      "class": "SYMCA-B",
+      "attendance": 77,
+      "marks": { "Java": 42, "DBMS": 38, "WT": 45, "DSA": 40 },
+      "assignments": { "completed": 6, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S012",
+      "name": "Diya Fernandes",
+      "class": "SYMCA-A",
+      "attendance": 91,
+      "marks": { "Java": 86, "DBMS": 88, "WT": 92, "DSA": 85 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S013",
+      "name": "Advait Gupta",
+      "class": "SYMCA-B",
+      "attendance": 83,
+      "marks": { "Java": 72, "DBMS": 68, "WT": 75, "DSA": 70 },
+      "assignments": { "completed": 8, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S014",
+      "name": "Kiara Shetty",
+      "class": "SYMCA-A",
+      "attendance": 69,
+      "marks": { "Java": 81, "DBMS": 85, "WT": 79, "DSA": 83 },
+      "assignments": { "completed": 9, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S015",
+      "name": "Dhruv Iyer",
+      "class": "SYMCA-B",
+      "attendance": 89,
+      "marks": { "Java": 90, "DBMS": 87, "WT": 92, "DSA": 88 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S016",
+      "name": "Myra Chawla",
+      "class": "SYMCA-A",
+      "attendance": 74,
+      "marks": { "Java": 48, "DBMS": 52, "WT": 45, "DSA": 50 },
+      "assignments": { "completed": 5, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S017",
+      "name": "Atharv Bhat",
+      "class": "SYMCA-B",
+      "attendance": 97,
+      "marks": { "Java": 96, "DBMS": 93, "WT": 95, "DSA": 98 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S018",
+      "name": "Saanvi Pillai",
+      "class": "SYMCA-A",
+      "attendance": 86,
+      "marks": { "Java": 38, "DBMS": 42, "WT": 35, "DSA": 39 },
+      "assignments": { "completed": 7, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S019",
+      "name": "Rudra Verma",
+      "class": "SYMCA-B",
+      "attendance": 80,
+      "marks": { "Java": 65, "DBMS": 70, "WT": 62, "DSA": 68 },
+      "assignments": { "completed": 8, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S020",
+      "name": "Tara Menon",
+      "class": "SYMCA-A",
+      "attendance": 93,
+      "marks": { "Java": 88, "DBMS": 91, "WT": 94, "DSA": 90 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S021",
+      "name": "Yash Thakur",
+      "class": "SYMCA-B",
+      "attendance": 71,
+      "marks": { "Java": 32, "DBMS": 36, "WT": 40, "DSA": 35 },
+      "assignments": { "completed": 4, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S022",
+      "name": "Ira Mukherjee",
+      "class": "SYMCA-A",
+      "attendance": 84,
+      "marks": { "Java": 76, "DBMS": 81, "WT": 78, "DSA": 80 },
+      "assignments": { "completed": 9, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S023",
+      "name": "Neil Fernandes",
+      "class": "SYMCA-B",
+      "attendance": 90,
+      "marks": { "Java": 85, "DBMS": 79, "WT": 88, "DSA": 82 },
+      "assignments": { "completed": 9, "total": 10 },
+      "status": "Inactive"
+    },
+    {
+      "id": "S024",
+      "name": "Avni Kapoor",
+      "class": "SYMCA-A",
+      "attendance": 76,
+      "marks": { "Java": 58, "DBMS": 62, "WT": 55, "DSA": 60 },
+      "assignments": { "completed": 6, "total": 10 },
+      "status": "Active"
+    },
+    {
+      "id": "S025",
+      "name": "Rohan Sinha",
+      "class": "SYMCA-B",
+      "attendance": 98,
+      "marks": { "Java": 97, "DBMS": 95, "WT": 96, "DSA": 94 },
+      "assignments": { "completed": 10, "total": 10 },
+      "status": "Active"
+    }
+  ]
+}
