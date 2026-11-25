@@ -23,8 +23,21 @@ class DoublyLinkedList {
 
     // ---------- 4 Types of Insertion ----------
 
+    void fixLinks() {
+        if (head == nullptr)
+            return;
+        head->prev = nullptr;
+        Node *cur = head;
+        while (cur->next != nullptr) {
+            cur->next->prev = cur;
+            cur = cur->next;
+        }
+    }
+
     void insertAtBeginning(int value) {
         Node *node = new Node(value, nullptr, head);
+        if (head != nullptr)
+            head->prev = node;
         head = node;
     }
 
@@ -45,31 +58,33 @@ class DoublyLinkedList {
 
     void insertAfterValue(int target, int value) {
         Node *cur = head;
-        while (cur != nullptr || cur->data != target) {
+        while (cur != nullptr && cur->data != target) {
             cur = cur->next;
         }
         if (cur == nullptr) {
             std::cout << "The list has no node with value" << target << "\n";
         } else {
             Node *node = new Node(value, cur, cur->next);
+            if (cur->next != nullptr)
+                cur->next->prev = node;
             cur->next = node;
         }
     }
 
     void insertBeforeValue(int target, int value) {
         Node *cur = head;
-        while (cur != nullptr || cur->data != target) {
+        while (cur != nullptr && cur->data != target) {
             cur = cur->next;
         }
         if (cur == nullptr) {
             std::cout << "The list has no node with value" << target << "\n";
-        } else if (head->data == target) {
-            Node *node = new Node(value, nullptr, head);
-            head = node;
+        } else if (cur == head) {
+            insertAtBeginning(value);
         } else {
             cur = cur->prev;
             Node *node = new Node(value, cur, cur->next);
             cur->next = node;
+            node->next->prev = node;
         }
     }
 
@@ -81,48 +96,50 @@ class DoublyLinkedList {
         }
         Node *toDelete = head;
         head = head->next;
+        if (head != nullptr) {
+            head->prev = nullptr;
+        }
         delete toDelete;
     }
 
     void deleteFromEnd() {
-        if (isEmpty()) {
+        if (isEmpty())
             return;
-        }
-
-        if (head->next = nullptr) {
-            delete head;
-            head = nullptr;
-            return;
-        }
 
         Node *cur = head;
+
         while (cur->next != nullptr) {
             cur = cur->next;
         }
 
-        cur = cur->prev;
-        delete cur->next;
-        cur->next = nullptr;
+        if (cur->prev == nullptr) {
+            head = nullptr;
+        } else {
+            cur->prev->next = nullptr;
+        }
+
+        delete cur;
     }
 
     void deleteByValue(int value) {
         Node *cur = head;
 
-        while (cur != nullptr || cur->data != value) {
+        while (cur != nullptr && cur->data != value) {
             cur = cur->next;
         }
 
         if (cur == nullptr) {
             std::cout << "The list has no node with value" << value << "\n";
-        } else if (head->data = value) {
-            Node *toDelete = head;
-            head = head->next;
-            delete toDelete;
+            return;
+        }
+        if (cur->prev == nullptr) {
+            deleteFromBeginning();
         } else {
-            Node *toDelete = cur;
-            cur = cur->prev;
-            cur->next = cur->next->next;
-            delete toDelete;
+            cur->prev->next = cur->next;
+            if (cur->next != nullptr) {
+                cur->next->prev = cur->prev;
+            }
+            delete cur;
         }
     }
 
@@ -168,7 +185,7 @@ class DoublyLinkedList {
     int count() {
         int res = 0;
         Node *cur = head;
-        while (cur->next != nullptr) {
+        while (cur != nullptr) {
             res++;
             cur = cur->next;
         }
@@ -189,45 +206,230 @@ class DoublyLinkedList {
     }
 
     void reverse() {
-        // TODO: swap prev and next of every node, then fix head
+        Node *cur = head;
+        Node *last = nullptr;
+        while (cur != nullptr) {
+            Node *curPrev = cur->prev;
+            cur->prev = cur->next;
+            cur->next = curPrev;
+            last = cur;
+            cur = cur->prev;
+        }
+        head = last;
     }
 
-    void sort() {}
+    void sort() {
+        int n = count();
+
+        for (int i = 0; i < n; i++) {
+            Node *cur = head;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (cur->data > cur->next->data) {
+                    int temp = cur->data;
+                    cur->data = cur->next->data;
+                    cur->next->data = temp;
+                }
+                cur = cur->next;
+            }
+        }
+    }
 
     // ---------- Operations Using a Second List ----------
 
     void merge(DoublyLinkedList &other) {
-        // TODO: merge two SORTED lists into this one
-        // (or interleave, depending on what your course means by merge)
+        Node *dummy = new Node(0, nullptr, nullptr);
+        Node *q = dummy;
+
+        Node *q1 = this->head;
+        Node *q2 = other.head;
+
+        while (q1 != NULL && q2 != NULL) {
+            q->next = q1;
+            q1 = q1->next;
+            q = q->next;
+
+            q->next = q2;
+            q2 = q2->next;
+            q = q->next;
+        }
+
+        if (q1 != NULL) {
+            q->next = q1;
+        }
+
+        if (q2 != NULL) {
+            q->next = q2;
+        }
+        this->head = dummy->next;
+        other.head = nullptr;
+        delete dummy;
+        fixLinks();
     }
 
     void unionList(DoublyLinkedList &other) {
-        // TODO: all distinct elements from both lists (unordered_set helps)
+        std::unordered_set<int> s;
+
+        Node *dummy = new Node(0, nullptr, nullptr);
+        Node *q = dummy;
+
+        Node *q1 = this->head;
+        Node *q2 = other.head;
+
+        while (q1 != NULL && q2 != NULL) {
+            if (!s.count(q1->data)) {
+                q->next = q1;
+                s.insert(q1->data);
+                q1 = q1->next;
+                q = q->next;
+            } else {
+                q1 = q1->next;
+            }
+            if (!s.count(q2->data)) {
+                q->next = q2;
+                s.insert(q2->data);
+                q2 = q2->next;
+                q = q->next;
+            } else {
+                q2 = q2->next;
+            }
+        }
+        while (q1 != NULL) {
+            if (!s.count(q1->data)) {
+                q->next = q1;
+                s.insert(q1->data);
+                q1 = q1->next;
+                q = q->next;
+            } else {
+                q1 = q1->next;
+            }
+        }
+
+        while (q2 != NULL) {
+            if (!s.count(q2->data)) {
+                q->next = q2;
+                s.insert(q2->data);
+                q2 = q2->next;
+                q = q->next;
+            } else {
+                q2 = q2->next;
+            }
+        }
+
+        q->next = NULL;
+        this->head = dummy->next;
+        other.head = nullptr;
+        delete dummy;
+        fixLinks();
     }
 
     void intersection(DoublyLinkedList &other) {
-        // TODO: distinct elements present in both lists
+        std::unordered_set<int> s;
+        std::unordered_set<int> added;
+
+        Node *dummy = new Node(0, nullptr, nullptr);
+        Node *q = dummy;
+
+        Node *q1 = head;
+        Node *q2 = other.head;
+
+        while (q1 != NULL) {
+            s.insert(q1->data);
+            q1 = q1->next;
+        }
+
+        while (q2 != NULL) {
+            if (s.count(q2->data) && !added.count(q2->data)) {
+                q->next = q2;
+                q = q->next;
+                added.insert(q2->data);
+            }
+            q2 = q2->next;
+        }
+        q->next = NULL;
+        this->head = dummy->next;
+        other.head = nullptr;
+        delete dummy;
+        fixLinks();
     }
 
     void concatenate(DoublyLinkedList &other) {
-        // TODO: attach other's head after this list's tail
-        // Set other.head = NULL afterwards
+        if (this->head == NULL) {
+            this->head = other.head;
+        } else {
+            Node *cur = this->head;
+            while (cur->next != NULL) {
+                cur = cur->next;
+            }
+            cur->next = other.head;
+        }
+        other.head = nullptr;
+        fixLinks();
     }
 
     // ---------- Cycle Operations ----------
 
     void createCycle(int pos) {
-        // TODO: link the last node's next to the node at position pos
-        // (test helper, so you have a cycle to detect)
+
+        if (head == NULL) {
+            cout << "Linked list is empty\n";
+            return;
+        }
+
+        Node *p = head;
+        for (int i = 0; i < pos && p != NULL; i++) {
+            p = p->next;
+        }
+
+        if (p == NULL) {
+            cout << "Invalid position\n";
+            return;
+        }
+
+        Node *q = head;
+        while (q->next != NULL) {
+            q = q->next;
+        }
+        q->next = p;
     }
 
     bool detectCycle() {
-        // TODO: Floyd's slow/fast pointers
+        Node *slow = head;
+        Node *fast = head;
+
+        while (fast != NULL && fast->next != NULL && slow != NULL) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if (slow == fast) {
+                std::cout << "Cycle detected\n";
+                return true;
+            }
+        }
+        std::cout << "Cycle undetected\n";
         return false;
     }
 
     void displayCycle() {
-        // TODO: find the cycle start, then print nodes until you return to it
+        if (!detectCycle()) {
+            std::cout << "There is no cycle\n";
+            return;
+        }
+
+        std::unordered_set<Node *> listAddress;
+
+        Node *q = head;
+        while (listAddress.count(q) == 0) {
+            listAddress.insert(q);
+            q = q->next;
+        }
+
+        listAddress.clear();
+        std::cout << "Cycle : ";
+        while (listAddress.count(q) == 0) {
+            listAddress.insert(q);
+            std::cout << q->data << " -> ";
+            q = q->next;
+        }
+        std::cout << "(Back to start)\n";
     }
 };
 
@@ -274,9 +476,9 @@ int main() {
     DoublyLinkedList list;  // main list
     DoublyLinkedList list2; // second list for merge/union/intersection/concat
     int choice, value, target, pos, n;
+    printMenu();
 
     do {
-        printMenu();
         cin >> choice;
 
         switch (choice) {

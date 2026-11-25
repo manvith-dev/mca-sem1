@@ -531,40 +531,40 @@ int main() {
     int ch;
     Sll obj;
 
+    cout << "\n----- SINGLY LINKED LIST -----" << endl;
+
+    cout << "1. Insert From Beginning" << endl;
+    cout << "2. Insert From End" << endl;
+    cout << "3. Insert After Value" << endl;
+    cout << "4. Insert Before Value" << endl;
+
+    cout << "5. Delete From Beginning" << endl;
+    cout << "6. Delete From End" << endl;
+    cout << "7. Delete Element" << endl;
+
+    cout << "8. Display" << endl;
+    cout << "9. Count" << endl;
+    cout << "10. Search" << endl;
+
+    cout << "11. Reverse" << endl;
+    cout << "12. Sort" << endl;
+
+    cout << "13. Merge" << endl;
+    cout << "14. Union" << endl;
+    cout << "15. Intersection" << endl;
+    cout << "16. Concatenation" << endl;
+
+    cout << "17. Detect Cycle" << endl;
+    cout << "18. Display Cycle" << endl;
+
+    cout << "19. Exit" << endl;
+
+    cout << "--- Helpers ---" << endl;
+    cout << "20. Create Second List" << endl;
+    cout << "21. Display Second List" << endl;
+    cout << "22. Create Cycle" << endl;
+
     do {
-        cout << "\n----- SINGLY LINKED LIST -----" << endl;
-
-        cout << "1. Insert From Beginning" << endl;
-        cout << "2. Insert From End" << endl;
-        cout << "3. Insert After Value" << endl;
-        cout << "4. Insert Before Value" << endl;
-
-        cout << "5. Delete From Beginning" << endl;
-        cout << "6. Delete From End" << endl;
-        cout << "7. Delete Element" << endl;
-
-        cout << "8. Display" << endl;
-        cout << "9. Count" << endl;
-        cout << "10. Search" << endl;
-
-        cout << "11. Reverse" << endl;
-        cout << "12. Sort" << endl;
-
-        cout << "13. Merge" << endl;
-        cout << "14. Union" << endl;
-        cout << "15. Intersection" << endl;
-        cout << "16. Concatenation" << endl;
-
-        cout << "17. Detect Cycle" << endl;
-        cout << "18. Display Cycle" << endl;
-
-        cout << "19. Exit" << endl;
-
-        cout << "--- Helpers ---" << endl;
-        cout << "20. Create Second List" << endl;
-        cout << "21. Display Second List" << endl;
-        cout << "22. Create Cycle" << endl;
-
         cout << "Enter Your Choice: ";
         cin >> ch;
 
