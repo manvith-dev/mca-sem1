@@ -53,7 +53,7 @@ export default function Dashboard() {
         </TableBody>
       </Table>
       <AverageMarksPerSubject />
-      <StudentsPerformance />
+      <StudentsPerformance />``
     </>
   );
 }

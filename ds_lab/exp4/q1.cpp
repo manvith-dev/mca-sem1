@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <unordered_set>
 using namespace std;
 
 struct Node {
@@ -58,6 +59,12 @@ class Sll {
     }
 
     void insertAfterValue() {
+        int element;
+        std::cout << "Enter element :";
+        std::cin >> element;
+
+        p = createNode(element);
+
         int value;
 
         cout << "Enter value: ";
@@ -78,19 +85,35 @@ class Sll {
     }
 
     void insertBeforeValue() {
+        int element;
+        std::cout << "Enter element :";
+        std::cin >> element;
+
+        p = createNode(element);
         int value;
 
         cout << "Enter value: ";
         cin >> value;
 
+        if (head == NULL) {
+            std::cout << "Linked list is empty\n";
+            return;
+        }
+        if (head->data == value) {
+            p->next = head;
+            head = p;
+            return;
+        }
+
         q = head;
 
-        while (q != NULL && q->next != NULL && q->next->data != value) {
+        while (q->next != NULL && q->next->data != value) {
             q = q->next;
         }
 
-        if (q == NULL) {
-            std::cout << "Element" << value << "not present in the linked list";
+        if (q->next == NULL) {
+            std::cout << "Element " << value
+                      << " not present in the linked list\n";
         } else {
             p->next = q->next;
             q->next = p;
@@ -129,21 +152,26 @@ class Sll {
         cout << "Enter value to delete: ";
         cin >> value;
 
+        if (head == NULL) {
+            std::cout << "Linked list is empty\n";
+            return;
+        }
+
         if (head->data == value) {
             head = head->next;
+            std::cout << "Node has been deleted from the linked list\n";
         } else {
-
             q = head;
 
-            while (q != NULL && q->next->data != value) {
+            while (q->next != NULL && q->next->data != value) {
                 q = q->next;
             }
 
-            if (q == NULL) {
-                std::cout << "Element not found";
+            if (q->next == NULL) {
+                std::cout << "Element not found\n";
             } else {
                 q->next = q->next->next;
-                std::cout << "Node has been deleted from the linked list";
+                std::cout << "Node has been deleted from the linked list\n";
             }
         }
     }
@@ -179,6 +207,7 @@ class Sll {
         cin >> value;
 
         int pos = 0;
+        q = head;
         while (q != NULL) {
             if (q->data == value) {
                 std::cout << "The value " << value << " is present at position "
@@ -196,21 +225,25 @@ class Sll {
         } else if (head->next == NULL) {
             return;
         }
-        Node *prev = head;
-        q = head->next;
+
+        Node *prev = NULL;
+        Node *next;
+        q = head;
 
         while (q != NULL) {
+            next = q->next;
             q->next = prev;
             prev = q;
-            q = q->next;
+            q = next;
         }
+        head = prev;
     }
 
     void sort() { head = mergeSort(head); }
 
     Node *mergeSort(Node *head) {
         if (head == NULL || head->next == NULL) {
-            return;
+            return head;
         }
 
         Node *mid = getMiddle(head);
@@ -220,14 +253,14 @@ class Sll {
         mid->next = NULL;
         a = mergeSort(a);
         b = mergeSort(b);
-        return merge(a, b);
+        return mergeSortHelper(a, b);
     }
 
-    Node *merge(Node *head1, Node *head2) {
+    Node *mergeSortHelper(Node *head1, Node *head2) {
         Node *dummy = new Node();
         q = dummy;
         while (head1 != NULL && head2 != NULL) {
-            if (head1->data < head2->data) {
+            if (head1->data <= head2->data) {
                 q->next = head1;
                 head1 = head1->next;
             } else {
@@ -244,7 +277,9 @@ class Sll {
         if (head2 != NULL) {
             q->next = head2;
         }
-        return dummy->next;
+        Node *res = dummy->next;
+        delete dummy;
+        return res;
     }
 
     Node *getMiddle(Node *head) {
@@ -259,36 +294,236 @@ class Sll {
         return slow;
     }
 
-    // Advanced Operations
+    // Helpers for testing the advanced operations
+
+    void createSecondList() {
+        int n, element;
+        cout << "How many elements in second list: ";
+        cin >> n;
+
+        head2 = NULL;
+        for (int i = 0; i < n; i++) {
+            cout << "Enter element: ";
+            cin >> element;
+
+            p = createNode(element);
+            if (head2 == NULL) {
+                head2 = p;
+            } else {
+                q = head2;
+                while (q->next != NULL) {
+                    q = q->next;
+                }
+                q->next = p;
+            }
+        }
+    }
+
+    void displaySecond() {
+        q = head2;
+        std::cout << "head2 -> ";
+        while (q != NULL) {
+            std::cout << q->data << " -> ";
+            q = q->next;
+        }
+        std::cout << "NULL\n";
+    }
+
+    void createCycle() {
+        int pos;
+        cout << "Enter position (0 indexed) the last node should link to: ";
+        cin >> pos;
+
+        if (head == NULL) {
+            cout << "Linked list is empty\n";
+            return;
+        }
+
+        p = head;
+        for (int i = 0; i < pos && p != NULL; i++) {
+            p = p->next;
+        }
+
+        if (p == NULL) {
+            cout << "Invalid position\n";
+            return;
+        }
+
+        q = head;
+        while (q->next != NULL) {
+            q = q->next;
+        }
+        q->next = p; // creates the cycle
+    }
+
+    // Advanced Operations (all work on head and head2)
 
     void merge() {
-        // Use head and head2
-        // Write your logic here
+        Node *dummy = new Node();
+        q = dummy;
+
+        Node *q1 = head;
+        Node *q2 = head2;
+
+        while (q1 != NULL && q2 != NULL) {
+            q->next = q1;
+            q1 = q1->next;
+            q = q->next;
+
+            q->next = q2;
+            q2 = q2->next;
+            q = q->next;
+        }
+
+        if (q1 != NULL) {
+            q->next = q1;
+        }
+
+        if (q2 != NULL) {
+            q->next = q2;
+        }
+        head = dummy->next;
+        head2 = NULL;
+        delete dummy;
     }
 
     void unionList() {
-        // Use head and head2
-        // Write your logic here
+        std::unordered_set<int> s;
+
+        Node *dummy = new Node();
+        q = dummy;
+
+        Node *q1 = head;
+        Node *q2 = head2;
+
+        while (q1 != NULL && q2 != NULL) {
+            if (!s.count(q1->data)) {
+                q->next = q1;
+                s.insert(q1->data);
+                q1 = q1->next;
+                q = q->next;
+            } else {
+                q1 = q1->next;
+            }
+            if (!s.count(q2->data)) {
+                q->next = q2;
+                s.insert(q2->data);
+                q2 = q2->next;
+                q = q->next;
+            } else {
+                q2 = q2->next;
+            }
+        }
+        while (q1 != NULL) {
+            if (!s.count(q1->data)) {
+                q->next = q1;
+                s.insert(q1->data);
+                q1 = q1->next;
+                q = q->next;
+            } else {
+                q1 = q1->next;
+            }
+        }
+
+        while (q2 != NULL) {
+            if (!s.count(q2->data)) {
+                q->next = q2;
+                s.insert(q2->data);
+                q2 = q2->next;
+                q = q->next;
+            } else {
+                q2 = q2->next;
+            }
+        }
+
+        q->next = NULL;
+        head = dummy->next;
+        head2 = NULL;
+        delete dummy;
     }
 
     void intersection() {
-        // Use head and head2
-        // Write your logic here
+        std::unordered_set<int> s;
+        std::unordered_set<int> added;
+
+        Node *dummy = new Node();
+        q = dummy;
+
+        Node *q1 = head;
+        Node *q2 = head2;
+
+        while (q1 != NULL) {
+            s.insert(q1->data);
+            q1 = q1->next;
+        }
+
+        while (q2 != NULL) {
+            if (s.count(q2->data) && !added.count(q2->data)) {
+                q->next = q2;
+                q = q->next;
+                added.insert(q2->data);
+            }
+            q2 = q2->next;
+        }
+        q->next = NULL;
+        head = dummy->next;
+        head2 = NULL;
+        delete dummy;
     }
 
     void concatenate() {
-        // Use head and head2
-        // Write your logic here
+        if (head == NULL) {
+            head = head2;
+        } else {
+            q = head;
+            while (q->next != NULL) {
+                q = q->next;
+            }
+            q->next = head2;
+        }
+        head2 = NULL;
     }
 
     // Cycle Operations
 
-    void detectCycle() {
-        // Write your logic here
+    int detectCycle() {
+        Node *slow = head;
+        Node *fast = head;
+
+        while (fast != NULL && fast->next != NULL && slow != NULL) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if (slow == fast) {
+                std::cout << "Cycle detected\n";
+                return 1;
+            }
+        }
+        std::cout << "Cycle undetected\n";
+        return 0;
     }
 
     void displayCycle() {
-        // Write your logic here
+        if (!detectCycle()) {
+            std::cout << "There is no cycle\n";
+            return;
+        }
+
+        std::unordered_set<Node *> listAddress;
+
+        q = head;
+        while (listAddress.count(q) == 0) {
+            listAddress.insert(q);
+            q = q->next;
+        }
+
+        listAddress.clear();
+        std::cout << "Cycle : ";
+        while (listAddress.count(q) == 0) {
+            listAddress.insert(q);
+            std::cout << q->data << " -> ";
+            q = q->next;
+        }
+        std::cout << "(Back to start)\n";
     }
 };
 
@@ -324,6 +559,11 @@ int main() {
         cout << "18. Display Cycle" << endl;
 
         cout << "19. Exit" << endl;
+
+        cout << "--- Helpers ---" << endl;
+        cout << "20. Create Second List" << endl;
+        cout << "21. Display Second List" << endl;
+        cout << "22. Create Cycle" << endl;
 
         cout << "Enter Your Choice: ";
         cin >> ch;
@@ -391,6 +631,16 @@ int main() {
 
         case 19:
             cout << "Exiting..." << endl;
+            break;
+
+        case 20:
+            obj.createSecondList();
+            break;
+        case 21:
+            obj.displaySecond();
+            break;
+        case 22:
+            obj.createCycle();
             break;
 
         default:
